@@ -1,29 +1,8 @@
 import styled from "styled-components";
-
-const H1 = styled.h1`
-  font-size: 30px;
-  font-weight: 600;
-  background-color: yellow;
-`;
-
-const Button = styled.button`
-  font-size: 1.4rem;
-  padding: 1.2rem 1.6rem;
-  font-weight: 500;
-  border: none;
-  border-radius: 7px;
-  background-color: purple;
-  color: white;
-  cursor: pointer;
-
-  margin: 20px;
-`;
-
-const Input = styled.input`
-  border: 1px solid ddd;
-  border-radius: 5px;
-  padding: 0.8rem 1.2rem;
-`;
+import GlobalStyles from "./styles/GlobalStyles.js";
+import Button from "./ui/Button.jsx";
+import Input from "./ui/Input.jsx";
+import Heading from "./ui/Heading.jsx";
 
 const StyledApp = styled.div`
   background-color: orangered;
@@ -32,14 +11,20 @@ const StyledApp = styled.div`
 
 function App() {
   return (
-    <StyledApp>
-      <H1>Spiritual Heaven</H1>
-      <Button onClick={() => alert("Check in")}>Check in</Button>
-      <Button onClick={() => alert("Check out")}>Check out</Button>
+    <>
+      <GlobalStyles />
+      <StyledApp>
+        <Heading as="h1">Spiritual Heaven</Heading>
 
-      <Input type="number" placeholder="Number of guests" />
-      <Input type="number" placeholder="Number of guests" />
-    </StyledApp>
+        <Heading as="h2">Check in and out</Heading>
+        <Button onClick={() => alert("Check in")}>Check in</Button>
+        <Button onClick={() => alert("Check out")}>Check out</Button>
+
+        <Heading as="h3">Form</Heading>
+        <Input type="number" placeholder="Number of guests" />
+        <Input type="number" placeholder="Number of guests" />
+      </StyledApp>
+    </>
   );
 }
 
