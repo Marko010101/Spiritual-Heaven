@@ -33,7 +33,7 @@ const StyledApp = styled.div`
 function App() {
   return (
     <StyledApp>
-      <H1>The Wild Oasis</H1>
+      <H1>Spiritual Heaven</H1>
       <Button onClick={() => alert("Check in")}>Check in</Button>
       <Button onClick={() => alert("Check out")}>Check out</Button>
 
