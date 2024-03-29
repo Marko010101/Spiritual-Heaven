@@ -15,9 +15,10 @@ function CreateCabinForm({ cabinToEdit = {} }) {
   const { id: editId, ...editValues } = cabinToEdit;
   const isEditSession = Boolean(editId);
 
-  const { register, handleSubmit, reset, getValues, formState } = useForm({
+  const { register, handleSubmit, reset, watch, formState } = useForm({
     defaultValues: isEditSession ? editValues : {},
   });
+  const regularPrice = watch("regularPrice");
   const { errors } = formState;
 
   const queryClient = useQueryClient();
@@ -94,11 +95,9 @@ function CreateCabinForm({ cabinToEdit = {} }) {
           {...register("discount", {
             required: "This field is required",
             validate: (value) => {
-              const regularPrice = getValues().regularPrice;
               if (value >= regularPrice) {
                 return "Discount should be less than regular price";
               }
-              return true;
             },
           })}
         />
