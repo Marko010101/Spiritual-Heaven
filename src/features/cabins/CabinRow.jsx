@@ -5,10 +5,10 @@ import { formatCurrency } from "../../utils/helpers.js";
 import CreateCabinForm from "./CreateCabinForm.jsx";
 import { useDeleteCabin } from "./useDeliteCabin.js";
 import { useCreateCabin } from "./useCreateCabin.js";
-import ComfirmDelete from "../../ui/ConfirmDelete.jsx";
 import Modal from "../../ui/Modal.jsx";
 import Table from "../../ui/Table.jsx";
 import Menus from "../../ui/Menus.jsx";
+import ConfirmDelete from "../../ui/ConfirmDelete.jsx";
 
 // const TableRow = styled.div`
 //   display: grid;
@@ -91,14 +91,18 @@ function CabinRow({ cabin }) {
             <Menus.Toggle id={cabinId} />
 
             <Menus.List id={cabinId}>
-              <Menus.Button icon={<HiSquare2Stack />} onClick={handleDuplicate}>
-                Duplcicate
+              <Menus.Button
+                icon={<HiSquare2Stack />}
+                onClick={handleDuplicate}
+                disabled={isCreating}
+              >
+                Duplicate
               </Menus.Button>
 
               <Modal.Open opens="edit">
                 <Menus.Button icon={<HiPencil />}>Edit</Menus.Button>
               </Modal.Open>
-              
+
               <Modal.Open opens="delete">
                 <Menus.Button icon={<HiTrash />}>Delete</Menus.Button>
               </Modal.Open>
@@ -109,8 +113,8 @@ function CabinRow({ cabin }) {
             </Modal.Window>
 
             <Modal.Window name="delete">
-              <ComfirmDelete
-                resourcename="cabins"
+              <ConfirmDelete
+                resourceName="cabins"
                 disabled={isDeleting}
                 onConfirm={() => deleteCabin(cabinId)}
               />
