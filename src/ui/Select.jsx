@@ -15,8 +15,11 @@ const StyledSelect = styled.select`
 `;
 
 function Select({ options, value, onChange, ...props }) {
+  // Ensure value is not null or undefined, default to empty string
+  const selectedValue = value !== null && value !== undefined ? value : "";
+
   return (
-    <StyledSelect value={value} onChange={onChange} {...props}>
+    <StyledSelect value={selectedValue} onChange={onChange} {...props}>
       {options.map((option) => (
         <option value={option.value} key={option.value}>
           {option.label}
