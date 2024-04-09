@@ -3,11 +3,11 @@ import Button from "../../ui/Button";
 import Form from "../../ui/Form";
 import Input from "../../ui/Input";
 import FormRowVertical from "../../ui/FormRowVertical";
-import { login } from "../../services/apiAuth.js";
 import { useLogin } from "./useLogin.js";
 import SpinnerMini from "../../ui/SpinnerMini.jsx";
+import Row from "../../ui/Row.jsx";
 
-function LoginForm() {
+function LoginForm({ isLoginOpen, setIsLoginOpen }) {
   const [email, setEmail] = useState("marko@gmail.com");
   const [password, setPassword] = useState("marko123");
   const { login, isLoading } = useLogin();
@@ -25,6 +25,7 @@ function LoginForm() {
       }
     );
   }
+  if (isLoginOpen === false) return;
 
   return (
     <Form onSubmit={handleSubmit}>
@@ -50,9 +51,21 @@ function LoginForm() {
         />
       </FormRowVertical>
       <FormRowVertical>
-        <Button size="large" disabled={isLoading}>
-          {!isLoading ? "Log in" : <SpinnerMini />}
-        </Button>
+        <Row type="horizontal">
+          <Button size="large" disabled={isLoading}>
+            {!isLoading ? "Log in" : <SpinnerMini />}
+          </Button>
+          <Button
+            size="medium"
+            variation="neutral"
+            onClick={(e) => {
+              e.preventDefault();
+              setIsLoginOpen(false);
+            }}
+          >
+            {!isLoading ? "register" : <SpinnerMini />}
+          </Button>
+        </Row>
       </FormRowVertical>
     </Form>
   );

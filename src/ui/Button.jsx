@@ -38,6 +38,17 @@ const variations = {
       background-color: var(--color-grey-50);
     }
   `,
+  neutral: css`
+    color: var(--color-grey-700);
+    background: var(--color-blue-200);
+    border: 1px solid var(--color-grey-200);
+
+    &:hover {
+      color: var(--color-grey-800);
+      background-color: var(--color-blue-300);
+      scale: 103%;
+    }
+  `,
   danger: css`
     color: var(--color-red-100);
     background-color: var(--color-red-700);
@@ -52,9 +63,20 @@ const Button = styled.button`
   border: none;
   border-radius: var(--border-radius-sm);
   box-shadow: var(--shadow-sm);
+  width: 30rem;
 
-  ${(props) => sizes[props.size]}
-  ${(props) => variations[props.variation]}
+  ${(props) =>
+    props.size === "large" &&
+    `
+    width: 25rem;
+  `}
+  ${(props) =>
+    props.size === "medium" &&
+    `
+    width: 10rem;
+  `}
+    ${(props) => sizes[props.size]};
+  ${(props) => variations[props.variation]};
 `;
 
 Button.defaultProps = {
