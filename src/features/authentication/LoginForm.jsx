@@ -1,4 +1,7 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
+
 import Button from "../../ui/Button";
 import Form from "../../ui/Form";
 import Input from "../../ui/Input";
@@ -6,11 +9,16 @@ import FormRowVertical from "../../ui/FormRowVertical";
 import { useLogin } from "./useLogin.js";
 import SpinnerMini from "../../ui/SpinnerMini.jsx";
 import Row from "../../ui/Row.jsx";
+import { useInfoUser } from "../../context/userContext.jsx";
 
-function LoginForm({ isLoginOpen, setIsLoginOpen }) {
-  const [email, setEmail] = useState("marko@gmail.com");
-  const [password, setPassword] = useState("marko123");
+function LoginForm() {
+  const { email: registeredEmail, password: registeredPassword } =
+    useInfoUser();
+  console.log(registeredEmail, registeredPassword);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const { login, isLoading } = useLogin();
+  const navigate = useNavigate();
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -22,10 +30,13 @@ function LoginForm({ isLoginOpen, setIsLoginOpen }) {
           setEmail("");
           setPassword("");
         },
+        onError: (error) => {
+          console.error("Login error:", error);
+          toast.error("The provided email or password is incorrect.");
+        },
       }
     );
   }
-  if (isLoginOpen === false) return;
 
   return (
     <Form onSubmit={handleSubmit}>
@@ -35,8 +46,8 @@ function LoginForm({ isLoginOpen, setIsLoginOpen }) {
           id="email"
           // This makes this form better for password managers
           autoComplete="username"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          value={registeredEmail === "" ? email : registeredEmail}
+          // onChange={(e) => setEmail(e.target.value)}
           disabled={isLoading}
         />
       </FormRowVertical>
@@ -45,7 +56,7 @@ function LoginForm({ isLoginOpen, setIsLoginOpen }) {
           type="password"
           id="password"
           autoComplete="current-password"
-          value={password}
+          value={registeredPassword === "" ? password : registeredPassword}
           disabled={isLoading}
           onChange={(e) => setPassword(e.target.value)}
         />
@@ -60,7 +71,7 @@ function LoginForm({ isLoginOpen, setIsLoginOpen }) {
             variation="neutral"
             onClick={(e) => {
               e.preventDefault();
-              setIsLoginOpen(false);
+              navigate("/register");
             }}
           >
             {!isLoading ? "register" : <SpinnerMini />}

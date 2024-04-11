@@ -1,21 +1,60 @@
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 
 import Button from "../../ui/Button";
 import Form from "../../ui/Form";
 import FormRow from "../../ui/FormRow";
 import Input from "../../ui/Input";
+import { useSignup } from "./useSignup.js";
+import { useUser } from "./useUser.js";
+import { useLogin } from "./useLogin.js";
+import Spinner from "../../ui/Spinner.jsx";
+import { useInfoUser } from "../../context/userContext.jsx";
 
 // Email regex: /\S+@\S+\.\S+/
 
-function SignupForm({ isLoginOpen, setIsLoginOpen }) {
-  const { register, formState, getValues, handleSubmit } = useForm();
+function SignupForm() {
+  const { signup, isLoading } = useSignup();
+  const { register, formState, getValues, handleSubmit, reset } = useForm();
   const { errors } = formState;
+  const navigate = useNavigate();
+  // const { login, isLoading: loginingIn } = useLogin();
+  const {
+    email: registeredEmail,
+    password: registeredPassword,
+    dispatch,
+  } = useInfoUser();
 
-  function onSubmit(data) {
-    console.log(data);
+  const { user, isAuthenticated } = useUser();
+  console.log("user:", user);
+  console.log("isAuthenticated", isAuthenticated);
+
+  function onSubmit({ fullName, email, password }) {
+    signup(
+      { fullName, email, password },
+      {
+        // IF NO EMAIL AUTHENTICATION
+        // onSuccess: () => {
+        //   login({ email, password });
+        // },
+
+        onSuccess: () => {
+          dispatch({
+            type: "userRegistered",
+            payload: {
+              registeredEmail: getValues().email,
+              registeredPassword: getValues().password,
+            },
+          });
+          navigate("/login");
+        },
+
+        onSettled: () => reset,
+      }
+    );
   }
 
-  if (isLoginOpen === true) return;
+  // if (loginingIn) return <Spinner />;
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
@@ -23,6 +62,7 @@ function SignupForm({ isLoginOpen, setIsLoginOpen }) {
         <Input
           type="text"
           id="fullName"
+          disabled={isLoading}
           {...register("fullName", {
             required: "This field is required",
           })}
@@ -33,6 +73,7 @@ function SignupForm({ isLoginOpen, setIsLoginOpen }) {
         <Input
           type="email"
           id="email"
+          disabled={isLoading}
           {...register("email", {
             required: "This field is required",
             pattern: {
@@ -50,6 +91,7 @@ function SignupForm({ isLoginOpen, setIsLoginOpen }) {
         <Input
           type="password"
           id="password"
+          disabled={isLoading}
           {...register("password", {
             required: "This field is required",
             minLength: {
@@ -64,6 +106,7 @@ function SignupForm({ isLoginOpen, setIsLoginOpen }) {
         <Input
           type="password"
           id="passwordConfirm"
+          disabled={isLoading}
           {...register("passwordConfirm", {
             required: "This field is required",
             validate: (value) =>
@@ -77,11 +120,12 @@ function SignupForm({ isLoginOpen, setIsLoginOpen }) {
         <Button
           variation="secondary"
           type="reset"
-          onClick={() => setIsLoginOpen(true)}
+          disabled={isLoading}
+          onClick={() => navigate("/login")}
         >
           Cancel
         </Button>
-        <Button>Create new user</Button>
+        <Button disabled={isLoading}>Create new user</Button>
       </FormRow>
     </Form>
   );
