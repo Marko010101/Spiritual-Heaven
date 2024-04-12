@@ -26,8 +26,8 @@ function SignupForm() {
   } = useInfoUser();
 
   const { user, isAuthenticated } = useUser();
-  console.log("user:", user);
-  console.log("isAuthenticated", isAuthenticated);
+  // console.log("user:", user);
+  // console.log("isAuthenticated", isAuthenticated);
 
   function onSubmit({ fullName, email, password }) {
     signup(
@@ -42,10 +42,12 @@ function SignupForm() {
           dispatch({
             type: "userRegistered",
             payload: {
-              registeredEmail: getValues().email,
-              registeredPassword: getValues().password,
+              fullName: getValues().fullName,
+              email: getValues().email,
+              password: getValues().password,
             },
           });
+
           navigate("/login");
         },
 

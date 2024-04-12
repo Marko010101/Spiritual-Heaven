@@ -11,13 +11,20 @@ const initialState = {
 function reducer(state, action) {
   switch (action.type) {
     case "userRegistered":
+      console.log("userRegistered action dispatched:", action.payload);
       return {
         ...state,
         fullName: action.payload.fullName,
         email: action.payload.email,
         password: action.payload.password,
       };
-
+    case "userLogout":
+      return {
+        ...state,
+        fullName: "",
+        email: "",
+        password: "",
+      };
     default:
       throw new Error("Unknown action");
   }
