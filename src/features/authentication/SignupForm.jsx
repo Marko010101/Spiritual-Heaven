@@ -33,11 +33,6 @@ function SignupForm() {
     signup(
       { fullName, email, password },
       {
-        // IF NO EMAIL AUTHENTICATION
-        // onSuccess: () => {
-        //   login({ email, password });
-        // },
-
         onSuccess: () => {
           dispatch({
             type: "userRegistered",
@@ -123,7 +118,10 @@ function SignupForm() {
           variation="secondary"
           type="reset"
           disabled={isLoading}
-          onClick={() => navigate("/login")}
+          onClick={() => {
+            reset();
+            navigate("/login");
+          }}
         >
           Cancel
         </Button>

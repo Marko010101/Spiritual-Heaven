@@ -38,10 +38,6 @@ function LoginForm() {
           setEmail("");
           setPassword("");
         },
-        onError: (error) => {
-          console.error("Login error:", error);
-          toast.error("The provided email or password is incorrect.");
-        },
       }
     );
   }
@@ -76,9 +72,9 @@ function LoginForm() {
           registeredEmail && (
             <WarningMessage>Please verify your email to log in</WarningMessage>
           )} */}
-        {registeredEmail && (
+        {/* {registeredEmail && (
           <WarningMessage>Please verify your email to log in</WarningMessage>
-        )}
+        )} */}
       </Row>
       <FormRowVertical>
         <Row type="horizontal">

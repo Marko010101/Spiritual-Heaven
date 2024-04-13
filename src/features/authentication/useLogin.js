@@ -2,6 +2,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
 
 import { login as loginApi } from "../../services/apiAuth.js";
+import toast from "react-hot-toast";
 
 export function useLogin() {
   const queryClient = useQueryClient();
@@ -13,10 +14,13 @@ export function useLogin() {
       queryClient.setQueryData(["user"], user.user);
       navigate("/dashboard", { replace: true });
     },
-    // onError: (err) => {
-    //   console.log("ERROR", err);
-    //   toast.error("The provided email or password is incorrect.");
-    // },
+    onError: (err) => {
+      toast.error(
+        err.message === "Invalid login credentials"
+          ? "The provided email or password is incorrect."
+          : err.message
+      );
+    },
   });
 
   return { login, isLoading };
