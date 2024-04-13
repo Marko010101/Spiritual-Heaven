@@ -11,7 +11,6 @@ const initialState = {
 function reducer(state, action) {
   switch (action.type) {
     case "userRegistered":
-      console.log("userRegistered action dispatched:", action.payload);
       return {
         ...state,
         fullName: action.payload.fullName,

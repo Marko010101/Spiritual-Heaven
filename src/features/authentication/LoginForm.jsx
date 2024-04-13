@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import toast from "react-hot-toast";
 
 import Button from "../../ui/Button";
 import Form from "../../ui/Form";
@@ -9,14 +8,11 @@ import FormRowVertical from "../../ui/FormRowVertical";
 import { useLogin } from "./useLogin.js";
 import SpinnerMini from "../../ui/SpinnerMini.jsx";
 import Row from "../../ui/Row.jsx";
-import { useInfoUser } from "../../context/userContext.jsx";
-import { useUser } from "./useUser.js";
-import WarningMessage from "../../ui/WarningMessage.jsx";
+import { useInfoUser } from "../../context/UserContext.jsx";
 
 function LoginForm() {
   const { email: registeredEmail, password: registeredPassword } =
     useInfoUser();
-  const { user } = useUser();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { login, isLoading } = useLogin();
