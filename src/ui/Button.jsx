@@ -63,7 +63,7 @@ const Button = styled.button`
   border: none;
   border-radius: var(--border-radius-sm);
   box-shadow: var(--shadow-sm);
-  width: 30rem;
+  /* width: max-content; */
 
   ${(props) =>
     props.size === "large" &&
