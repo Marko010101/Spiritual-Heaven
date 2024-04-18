@@ -23,7 +23,7 @@ const StyledSelect = styled.select`
   box-shadow: var(--shadow-sm);
 `;
 
-function NewBookingForm() {
+function NewBookingForm({ onCloseModal }) {
   const [wantsBreakfast, setWantsBreakfast] = useState(false);
   const [isPaid, setIsPaid] = useState(false);
   const { cabins, isLoading } = useCabins();
@@ -36,6 +36,7 @@ function NewBookingForm() {
     handleSubmit,
     formState: { errors },
     getValues,
+    reset,
   } = useForm();
 
   if (isLoading || isLoadingSettings || isLoadingGuests) return <Spinner />;
@@ -97,6 +98,8 @@ function NewBookingForm() {
     createBooking(finalData, {
       onSuccess: (data) => {
         navigate(`/bookings`);
+        reset();
+        onCloseModal?.();
       },
     });
   }
@@ -202,7 +205,12 @@ function NewBookingForm() {
         <Button type="submit" variation="primary" disabled={isCreating}>
           Submit
         </Button>
-        <Button type="cancel" variation="secondary" disabled={isCreating}>
+        <Button
+          type="reset"
+          onClick={() => onCloseModal?.()}
+          variation="secondary"
+          disabled={isCreating}
+        >
           Cancel
         </Button>
       </FormRow>

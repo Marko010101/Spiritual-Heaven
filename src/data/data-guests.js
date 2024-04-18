@@ -21,7 +21,7 @@ export const guests = [
     email: "dito@example.com",
     nationality: "China",
     nationalID: "9374074454",
-    countryFlag: "https://flagcdn.com/ce.svg",
+    countryFlag: "https://flagcdn.com/cn.svg",
   },
   {
     fullName: "Jonas Mueller",

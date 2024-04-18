@@ -6,6 +6,8 @@ import Empty from "../../ui/Empty.jsx";
 import Spinner from "../../ui/Spinner.jsx";
 import Pagination from "../../ui/Pagination.jsx";
 import NewBookingForm from "./NewBookingForm.jsx";
+import Modal from "../../ui/Modal.jsx";
+import Button from "../../ui/Button.jsx";
 
 function BookingTable() {
   const { bookings, isLoading, count } = useBookings();
@@ -38,7 +40,15 @@ function BookingTable() {
           </Table.Footer>
         </Table>
       </Menus>
-      <NewBookingForm />
+
+      <Modal>
+        <Modal.Open opens="booking-form">
+          <Button size="large">Create new booking</Button>
+        </Modal.Open>
+        <Modal.Window name="booking-form">
+          <NewBookingForm close={close} />
+        </Modal.Window>
+      </Modal>
     </>
   );
 }
