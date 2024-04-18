@@ -27,6 +27,10 @@ import Checkin from "./pages/checkin.jsx";
 import Register from "./pages/Register.jsx"; 
 */
 
+// const CheckinBooking = lazy(() =>
+//   import("./features/check-in-out/CheckinBooking.jsx")
+// );
+
 const Dashboard = lazy(() => import("./pages/Dashboard.jsx"));
 const Bookings = lazy(() => import("./pages/Bookings.jsx"));
 const Cabins = lazy(() => import("./pages/Cabins.jsx"));
@@ -36,10 +40,7 @@ const Account = lazy(() => import("./pages/Account.jsx"));
 const Login = lazy(() => import("./pages/Login.jsx"));
 const PageNotFound = lazy(() => import("./pages/PageNotFound.jsx"));
 const Booking = lazy(() => import("./pages/Booking.jsx"));
-const CheckinBooking = lazy(() =>
-  import("./features/check-in-out/CheckinBooking.jsx")
-);
-// const Checkin = lazy(() => import("./pages/Checkin.jsx"));
+const Checkin = lazy(() => import("./pages/Checkin.jsx"));
 const Register = lazy(() => import("./pages/Register.jsx"));
 
 const queryClient = new QueryClient({
@@ -73,10 +74,7 @@ function App() {
                   <Route path="dashboard" element={<Dashboard />} />
                   <Route path="bookings" element={<Bookings />} />
                   <Route path="bookings/:bookingId" element={<Booking />} />
-                  <Route
-                    path="checkin/:bookingId"
-                    element={<CheckinBooking />}
-                  />
+                  <Route path="checkin/:bookingId" element={<Checkin />} />
                   <Route path="cabins" element={<Cabins />} />
                   <Route path="users" element={<Users />} />
                   <Route path="settings" element={<Settings />} />
