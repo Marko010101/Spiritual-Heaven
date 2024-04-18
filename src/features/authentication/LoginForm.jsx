@@ -8,7 +8,7 @@ import FormRowVertical from "../../ui/FormRowVertical";
 import { useLogin } from "./useLogin.js";
 import SpinnerMini from "../../ui/SpinnerMini.jsx";
 import Row from "../../ui/Row.jsx";
-import { useInfoUser } from "../../context/UserContext.jsx";
+import { useInfoUser } from "../../context/userContext.jsx";
 
 function LoginForm() {
   const { email: registeredEmail, password: registeredPassword } =
