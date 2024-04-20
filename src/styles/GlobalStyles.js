@@ -210,6 +210,22 @@ img {
   filter: grayscale(var(--image-grayscale)) opacity(var(--image-opacity));
 }
 
+@media (max-width: 992px) {
+  html {
+    font-size: 55%;
+  }
+}
+@media (max-width: 768px) {
+  html {
+    font-size: 50%;
+  }
+}
+@media (max-width: 576px) {
+  html {
+    font-size: 45%;
+  }
+}
+
 /*
 FOR DARK MODE
 
