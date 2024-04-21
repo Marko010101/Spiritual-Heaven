@@ -11,6 +11,17 @@ const RegisterLayout = styled.main`
   justify-content: center;
   gap: 3.2rem;
   background-color: var(--color-grey-50);
+
+  @media (max-width: 768px) {
+    grid-template-columns: 0.85fr;
+  }
+
+  @media (max-width: 576px) {
+    /* grid-template-columns: 0.9fr; */
+  }
+  @media (max-width: 320px) {
+    grid-template-columns: 1fr;
+  }
 `;
 
 function Register() {

@@ -70,11 +70,17 @@ const Button = styled.button`
     props.size === "large" &&
     `
     width: 25rem;
+
+    @media (max-width: 576px) {
+      width: 22rem;
+    }
   `}
   ${(props) =>
     props.size === "medium" &&
     `
-    width: 10rem;
+    width: max-content;
+
+ 
   `}
     ${(props) => sizes[props.size]};
   ${(props) => variations[props.variation]};

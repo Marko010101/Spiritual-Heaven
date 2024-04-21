@@ -20,6 +20,13 @@ const Form = styled.form`
     
   overflow: hidden;
   font-size: 1.4rem;
+
+  @media (max-width: 768px) {
+    /* width: 100%; */
+  }
+  @media (max-width: 576px) {
+    padding: 2rem 1.2rem;
+  }
 `;
 
 Form.defaultProps = {
