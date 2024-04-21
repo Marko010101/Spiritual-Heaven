@@ -215,11 +215,13 @@ img {
     font-size: 55%;
   }
 }
+
 @media (max-width: 768px) {
   html {
     font-size: 50%;
   }
 }
+
 @media (max-width: 576px) {
   html {
     font-size: 45%;

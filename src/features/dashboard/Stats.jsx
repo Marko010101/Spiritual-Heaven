@@ -2,8 +2,21 @@ import { HiOutlineBriefcase, HiOutlineChartBar } from "react-icons/hi";
 import Stat from "./Stat.jsx";
 import { HiOutlineBanknotes, HiOutlineCalendarDays } from "react-icons/hi2";
 import { formatCurrency } from "../../utils/helpers.js";
+import styled from "styled-components";
 
 function Stats({ bookings, confirmedStays, numDays, cabinCount }) {
+  const StyledStats = styled.span`
+    display: grid;
+    grid-column: 1 /-1;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 2rem;
+    @media (max-width: 992px) {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+  `;
+
   // 1.
   const numBookings = bookings.length;
 
@@ -20,7 +33,7 @@ function Stats({ bookings, confirmedStays, numDays, cabinCount }) {
   // num checked in nights / all available nights (num days *  num cabins)
 
   return (
-    <>
+    <StyledStats>
       <Stat
         title="Bookings"
         color="blue"
@@ -45,7 +58,7 @@ function Stats({ bookings, confirmedStays, numDays, cabinCount }) {
         icon={<HiOutlineChartBar />}
         value={Math.round(occupation * 100) + "%"}
       />
-    </>
+    </StyledStats>
   );
 }
 

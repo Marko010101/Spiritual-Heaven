@@ -1,8 +1,9 @@
+import { useState, useEffect } from "react";
 import styled from "styled-components";
+
 import Logo from "./Logo.jsx";
 import MainNav from "./MainNav.jsx";
-
-// import Uploader from "../data/Uploader.jsx";
+import Uploader from "../data/Uploader.jsx";
 
 const StyledSidebar = styled.aside`
   background-color: var(--color-grey-0);
@@ -16,13 +17,29 @@ const StyledSidebar = styled.aside`
   gap: 3.2rem;
 `;
 
-function Sidebar() {
+function Sidebar({ isMenuOpen }) {
+  const [isVisible, setIsVisible] = useState(isMenuOpen);
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (!isMenuOpen && window.innerWidth <= 1200) {
+        setIsVisible(false);
+      } else {
+        setIsVisible(true);
+      }
+    };
+
+    handleResize(); // Call initially
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, [isMenuOpen]);
+
+  if (!isVisible) return null;
+
   return (
     <StyledSidebar>
       <Logo />
       <MainNav />
-
-      {/* <Uploader /> */}
     </StyledSidebar>
   );
 }
