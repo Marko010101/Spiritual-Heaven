@@ -52,6 +52,11 @@ const MenuIcon = styled.span`
   align-items: center;
   justify-content: center;
 
+  & svg {
+    height: 2.5rem;
+    width: 2.5rem;
+  }
+
   @media (min-width: 1200px) {
     display: none;
   }

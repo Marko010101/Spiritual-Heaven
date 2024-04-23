@@ -17,6 +17,11 @@ const LoginLayout = styled.main`
     grid-template-columns: 0.8fr;
   }
 
+  @media (max-width: 768px) {
+    grid-template-rows: 25rem 0 30rem;
+    grid-gap: 10rem;
+  }
+
   @media (max-width: 320px) {
     grid-template-columns: 0.95fr;
   }
