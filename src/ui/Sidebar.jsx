@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 import Logo from "./Logo.jsx";
 import MainNav from "./MainNav.jsx";
+import { useMenuInfo } from "../context/MenuContext.jsx";
 // import Uploader from "../data/Uploader.jsx";
 
 const StyledSidebar = styled.aside`
@@ -16,10 +17,18 @@ const StyledSidebar = styled.aside`
   display: flex;
   flex-direction: column;
   gap: 3.2rem;
+
+  transition: opacity 0.5s, transform 0.5s;
+
+  opacity: ${(props) => (props.isVisible ? 1 : 0)};
+  transform: translateX(${(props) => (props.isVisible ? "0%" : "-100%")});
 `;
 
-function Sidebar({ isMenuOpen }) {
+function Sidebar() {
+  const { isMenuOpen } = useMenuInfo();
   const [isVisible, setIsVisible] = useState(isMenuOpen);
+  console.log(`isVisible:`, isVisible);
+  console.log(`isMenuOpen:`, isMenuOpen);
 
   useEffect(() => {
     const handleResize = () => {
@@ -35,10 +44,10 @@ function Sidebar({ isMenuOpen }) {
     return () => window.removeEventListener("resize", handleResize);
   }, [isMenuOpen]);
 
-  if (!isVisible) return null;
+  if (!isMenuOpen && window.innerWidth <= 1200) return;
 
   return (
-    <StyledSidebar>
+    <StyledSidebar isVisible={isVisible}>
       <Logo />
       <MainNav />
     </StyledSidebar>

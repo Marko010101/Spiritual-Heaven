@@ -14,8 +14,6 @@ const StyledAppLayout = styled.div`
 
   overflow-x: ${(props) => (props.isMenuOpen ? "hidden" : "auto")};
 
-  transition: all 0.3s;
-
   @media (max-width: 1200px) {
     ${(props) =>
       props.isMenuOpen === false &&
@@ -30,7 +28,7 @@ const Main = styled.main`
   background-color: var(--color-grey-50);
   padding: 4rem 4.8rem 6.4rem;
   overflow: auto;
-  transition: all 0.3s;
+  transition: all 0.2s;
 
   ${(props) =>
     props.isMenuOpen &&
@@ -85,7 +83,7 @@ function AppLayout() {
       <MenuIcon onClick={() => setIsMenuOpen(!isMenuOpen)}>
         <HiMiniBars4 />
       </MenuIcon>
-      <Sidebar isMenuOpen={isMenuOpen} />
+      <Sidebar />
       <Main isMenuOpen={isMenuOpen}>
         <Container>
           <Outlet />

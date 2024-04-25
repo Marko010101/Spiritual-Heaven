@@ -2,8 +2,6 @@ import { createContext, useContext, useState } from "react";
 
 const MenuContext = createContext();
 
-const initialState = {};
-
 function MenuInfoProvider({ children }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 

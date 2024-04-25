@@ -1,25 +1,29 @@
 import { HiOutlineBriefcase, HiOutlineChartBar } from "react-icons/hi";
-import Stat from "./Stat.jsx";
-import { HiOutlineBanknotes, HiOutlineCalendarDays } from "react-icons/hi2";
-import { formatCurrency } from "../../utils/helpers.js";
 import styled from "styled-components";
+import { HiOutlineBanknotes, HiOutlineCalendarDays } from "react-icons/hi2";
+
+import Stat from "./Stat.jsx";
+import { formatCurrency } from "../../utils/helpers.js";
+
+// Define StyledStats outside of the component function
+const StyledStats = styled.span`
+  display: grid;
+  grid-column: 1 / -1;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: 2rem;
+
+  @media (max-width: 992px) {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+
+  @media (max-width: 576px) {
+    grid-template-columns: 1fr;
+  }
+`;
 
 function Stats({ bookings, confirmedStays, numDays, cabinCount }) {
-  const StyledStats = styled.span`
-    display: grid;
-    grid-column: 1 /-1;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    gap: 2rem;
-    @media (max-width: 992px) {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 1.5rem;
-    }
-    @media (max-width: 576px) {
-      grid-template-columns: 1fr;
-    }
-  `;
-
   // 1.
   const numBookings = bookings.length;
 
