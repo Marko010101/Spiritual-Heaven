@@ -1,10 +1,13 @@
 import TableOperations from "../../ui/TableOperations.jsx";
 import Filter from "../../ui/Filter.jsx";
 import SortBy from "../../ui/SortBy.jsx";
+import { useMenuInfo } from "../../context/MenuContext.jsx";
 
 function CabinTableOperations() {
+  const { isMenuOpen } = useMenuInfo();
+
   return (
-    <TableOperations>
+    <TableOperations isMenuOpen={isMenuOpen}>
       <Filter
         filterField="discount"
         options={[

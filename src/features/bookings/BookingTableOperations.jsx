@@ -1,10 +1,13 @@
 import SortBy from "../../ui/SortBy";
 import Filter from "../../ui/Filter";
 import TableOperations from "../../ui/TableOperations";
+import { useMenuInfo } from "../../context/MenuContext.jsx";
 
 function BookingTableOperations() {
+  const { isMenuOpen } = useMenuInfo();
+
   return (
-    <TableOperations>
+    <TableOperations isMenuOpen={isMenuOpen}>
       <Filter
         filterField="status"
         options={[

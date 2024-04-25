@@ -12,6 +12,10 @@ const StyledStat = styled.div`
   grid-template-rows: auto auto;
   column-gap: 1.6rem;
   row-gap: 0.4rem;
+  @media (max-width: 576px) {
+    grid-template-columns: 6.4rem 1fr 1fr;
+    grid-template-rows: auto;
+  }
 `;
 
 const Icon = styled.div`
@@ -39,12 +43,21 @@ const Title = styled.h5`
   letter-spacing: 0.4px;
   font-weight: 600;
   color: var(--color-grey-500);
+
+  @media (max-width: 576px) {
+    align-self: center;
+    justify-self: center;
+  }
 `;
 
 const Value = styled.p`
   font-size: 2.4rem;
   line-height: 1;
   font-weight: 500;
+
+  @media (max-width: 576px) {
+    align-self: center;
+  }
 `;
 
 function Stat({ icon, title, value, color }) {

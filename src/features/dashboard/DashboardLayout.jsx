@@ -19,6 +19,7 @@ const StyledDashboardLayout = styled.div`
     flex-direction: column;
     gap: 1.5rem;
   }
+
 `;
 
 function DashboardLayout() {

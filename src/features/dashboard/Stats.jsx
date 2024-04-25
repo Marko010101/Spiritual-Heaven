@@ -15,6 +15,9 @@ function Stats({ bookings, confirmedStays, numDays, cabinCount }) {
       grid-template-columns: 1fr 1fr;
       gap: 1.5rem;
     }
+    @media (max-width: 576px) {
+      grid-template-columns: 1fr;
+    }
   `;
 
   // 1.

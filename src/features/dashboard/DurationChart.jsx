@@ -26,6 +26,11 @@ const ChartBox = styled.div`
   & .recharts-pie-label-text {
     font-weight: 600;
   }
+
+  @media (max-width: 578px) {
+    width: 100%;
+    padding: 1.6rem;
+  }
 `;
 
 const startDataLight = [
