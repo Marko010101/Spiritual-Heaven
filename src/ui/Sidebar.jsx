@@ -8,7 +8,7 @@ import { useMenuInfo } from "../context/MenuContext.jsx";
 
 const StyledSidebar = styled.aside`
   background-color: var(--color-grey-0);
-  margin-top: 5rem;
+  margin-top: 6rem;
   padding: 3.2rem 2.4rem;
   border-right: 1px solid var(--color-grey-100);
 

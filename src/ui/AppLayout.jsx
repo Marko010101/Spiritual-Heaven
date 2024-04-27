@@ -5,6 +5,7 @@ import Sidebar from "./Sidebar.jsx";
 import Header from "./Header.jsx";
 import styled, { css } from "styled-components";
 import { useMenuInfo } from "../context/MenuContext.jsx";
+import HamburgerMenuIcon from "./HamburgerMenuIcon.jsx";
 
 const StyledAppLayout = styled.div`
   display: grid;
@@ -14,14 +15,12 @@ const StyledAppLayout = styled.div`
 
   overflow-x: ${(props) => (props.isMenuOpen ? "hidden" : "auto")};
 
-  @media (max-width: 1200px) {
-    ${(props) =>
-      props.isMenuOpen === false &&
-      css`
-        grid-template-columns: 1fr;
-        grid-template-rows: max-content 1fr;
-      `}
-  }
+  ${(props) =>
+    props.isMenuOpen === false &&
+    css`
+      grid-template-columns: 1fr;
+      grid-template-rows: max-content 1fr;
+    `}
 `;
 
 const Main = styled.main`
@@ -55,7 +54,7 @@ const Container = styled.div`
 
 const MenuIcon = styled.span`
   position: absolute;
-  top: 2rem;
+  top: 1.7rem;
   left: 2rem;
   cursor: pointer;
   display: flex;
@@ -71,18 +70,17 @@ const MenuIcon = styled.span`
     display: none;
   }
 `;
-
 function AppLayout() {
-  // const [isMenuOpen, setIsMenuOpen] = useState(false);
-  // console.log(isMenuOpen);
-  const { isMenuOpen, setIsMenuOpen } = useMenuInfo();
+  const { isMenuOpen } = useMenuInfo();
 
   return (
     <StyledAppLayout isMenuOpen={isMenuOpen}>
       <Header />
-      <MenuIcon onClick={() => setIsMenuOpen(!isMenuOpen)}>
-        <HiMiniBars4 />
+
+      <MenuIcon>
+        <HamburgerMenuIcon />
       </MenuIcon>
+
       <Sidebar />
       <Main isMenuOpen={isMenuOpen}>
         <Container>
