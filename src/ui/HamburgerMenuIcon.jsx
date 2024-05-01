@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import styled from "styled-components";
 import { useMenuInfo } from "../context/MenuContext.jsx";
 
@@ -10,7 +9,7 @@ const StyledLabel = styled.label`
 `;
 
 const Span = styled.span`
-  background: #fff;
+  background: var(--color-grey-900);
   border-radius: 0.5rem; /* Adjusted border-radius */
   height: 0.35rem; /* Adjusted height */
   margin: 0.35rem 0; /* Adjusted margin */

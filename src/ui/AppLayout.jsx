@@ -1,5 +1,6 @@
 import { Outlet } from "react-router-dom";
-import { HiMiniBars4 } from "react-icons/hi2";
+
+// import Uploader from ".././data/Uploader.jsx";
 
 import Sidebar from "./Sidebar.jsx";
 import Header from "./Header.jsx";
@@ -15,12 +16,14 @@ const StyledAppLayout = styled.div`
 
   overflow-x: ${(props) => (props.isMenuOpen ? "hidden" : "auto")};
 
-  ${(props) =>
-    props.isMenuOpen === false &&
-    css`
-      grid-template-columns: 1fr;
-      grid-template-rows: max-content 1fr;
-    `}
+  @media (max-width: 1200px) {
+    ${(props) =>
+      props.isMenuOpen === false &&
+      css`
+        grid-template-columns: 1fr;
+        grid-template-rows: max-content 1fr;
+      `}
+  }
 `;
 
 const Main = styled.main`
@@ -29,15 +32,16 @@ const Main = styled.main`
   overflow: auto;
   transition: all 0.2s;
 
-  ${(props) =>
-    props.isMenuOpen &&
-    css`
-      overflow-x: hidden;
-      filter: brightness(85%);
-    `}
-
   @media (max-width: 1200px) {
     padding: 3rem 3.5rem 4rem;
+    
+    ${(props) =>
+      props.isMenuOpen &&
+      css`
+        overflow-x: hidden;
+        overflow-y: hidden;
+        filter: brightness(85%);
+      `}
   }
   @media (max-width: 992px) {
     padding: 1.5rem 2rem 1rem;
@@ -54,8 +58,8 @@ const Container = styled.div`
 
 const MenuIcon = styled.span`
   position: absolute;
-  top: 1.7rem;
-  left: 2rem;
+  top: 1.3rem;
+  left: 2.1rem;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -71,7 +75,7 @@ const MenuIcon = styled.span`
   }
 `;
 function AppLayout() {
-  const { isMenuOpen } = useMenuInfo();
+  const { isMenuOpen, setIsMenuOpen } = useMenuInfo();
 
   return (
     <StyledAppLayout isMenuOpen={isMenuOpen}>
@@ -80,10 +84,13 @@ function AppLayout() {
       <MenuIcon>
         <HamburgerMenuIcon />
       </MenuIcon>
+      {/* <Uploader /> */}
 
       <Sidebar />
       <Main isMenuOpen={isMenuOpen}>
-        <Container>
+        <Container
+          onClick={() => window.innerWidth < 1200 && setIsMenuOpen(false)}
+        >
           <Outlet />
         </Container>
       </Main>

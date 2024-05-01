@@ -1,6 +1,7 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import HeaderMenu from "./HeaderMenu.jsx";
 import UserAvatar from "../features/authentication/UserAvatar.jsx";
+import { useMenuInfo } from "../context/MenuContext.jsx";
 
 const StyledHeader = styled.header`
   background-color: var(--color-grey-0);
@@ -11,11 +12,31 @@ const StyledHeader = styled.header`
   gap: 2.4rem;
   align-items: center;
   justify-content: flex-end;
+
+  @media (max-width: 576px) {
+    padding: 1.2rem 2rem 1rem 7rem;
+
+    ${(props) =>
+      props.isMenuOpen &&
+      css`
+        padding: 1.2rem 2rem;
+        justify-content: space-between;
+      `};
+  }
+  @media (max-width: 460px) {
+    ${(props) =>
+      props.isMenuOpen &&
+      css`
+        flex-direction: column-reverse;
+      `}
+  }
 `;
 
 function Header() {
+  const { isMenuOpen } = useMenuInfo();
+
   return (
-    <StyledHeader>
+    <StyledHeader isMenuOpen={isMenuOpen}>
       <UserAvatar />
       <HeaderMenu />
     </StyledHeader>
