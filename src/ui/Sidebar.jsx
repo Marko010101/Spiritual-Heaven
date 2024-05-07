@@ -29,6 +29,10 @@ const StyledSidebar = styled.aside`
     width: 26rem;
     height: 100vh;
   }
+  @media (max-width: 320px) {
+    width: 20rem;
+    padding: 3.2rem 1rem;
+  }
 `;
 
 function Sidebar() {
