@@ -22,6 +22,13 @@ const StyledSidebar = styled.aside`
 
   opacity: ${(props) => (props.isVisible ? 1 : 0)};
   transform: translateX(${(props) => (props.isVisible ? "0%" : "-100%")});
+
+  @media (max-width: 1200px) {
+    position: absolute;
+    z-index: 1000;
+    width: 26rem;
+    height: 100vh;
+  }
 `;
 
 function Sidebar() {

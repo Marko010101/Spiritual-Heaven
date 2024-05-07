@@ -17,14 +17,25 @@ const StyledAppLayout = styled.div`
   overflow-x: ${(props) => (props.isMenuOpen ? "hidden" : "auto")};
 
   @media (max-width: 1200px) {
-    position: relative;
-    grid-template-columns: 1fr;
-    grid-template-rows: max-content 1fr;
+    ${(props) =>
+      props.isMenuOpen === false &&
+      css`
+        grid-template-columns: 1fr;
+        grid-template-rows: max-content 1fr;
+      `}
 
     ${(props) =>
       props.isMenuOpen &&
       css`
         overflow: hidden;
+      `}
+  }
+
+  @media (max-width: 576px) {
+    ${(props) =>
+      props.isMenuOpen &&
+      css`
+        grid-template-columns: 20rem 1fr;
       `}
   }
 `;

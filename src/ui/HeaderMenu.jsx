@@ -9,17 +9,6 @@ import { useMenuInfo } from "../context/MenuContext.jsx";
 const StyledHeaderMenu = styled.ul`
   display: flex;
   gap: 0.4rem;
-
-  @media (max-width: 460px) {
-    ${(props) =>
-      props.isMenuOpen &&
-      css`
-        & > li:nth-child(1),
-        & > li:nth-child(2) {
-          display: none;
-        }
-      `}
-  }
 `;
 
 function HeaderMenu() {

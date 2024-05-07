@@ -13,16 +13,11 @@ const StyledHeader = styled.header`
   align-items: center;
   justify-content: flex-end;
 
+  @media (max-width: 1200px) {
+    gap: 4rem;
+  }
   @media (max-width: 576px) {
     padding: 1.2rem 2rem 1rem 7rem;
-
-    ${(props) =>
-      props.isMenuOpen &&
-      css`
-        padding: 1.2rem 1rem;
-        gap: 4rem;
-        justify-content: space-between;
-      `};
   }
 `;
 
