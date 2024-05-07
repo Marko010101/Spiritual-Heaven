@@ -23,6 +23,20 @@ const StyledAppLayout = styled.div`
         grid-template-columns: 1fr;
         grid-template-rows: max-content 1fr;
       `}
+
+    ${(props) =>
+      props.isMenuOpen &&
+      css`
+        overflow: hidden;
+      `}
+  }
+
+  @media (max-width: 576px) {
+    ${(props) =>
+      props.isMenuOpen &&
+      css`
+        grid-template-columns: 20rem 1fr;
+      `}
   }
 `;
 
@@ -34,12 +48,11 @@ const Main = styled.main`
 
   @media (max-width: 1200px) {
     padding: 3rem 3.5rem 4rem;
-    
+
     ${(props) =>
       props.isMenuOpen &&
       css`
-        overflow-x: hidden;
-        overflow-y: hidden;
+        overflow: hidden;
         filter: brightness(85%);
       `}
   }

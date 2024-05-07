@@ -14,7 +14,10 @@ const StyledHeaderMenu = styled.ul`
     ${(props) =>
       props.isMenuOpen &&
       css`
-        gap: 1.5rem;
+        & > li:nth-child(1),
+        & > li:nth-child(2) {
+          display: none;
+        }
       `}
   }
 `;

@@ -19,16 +19,10 @@ const StyledHeader = styled.header`
     ${(props) =>
       props.isMenuOpen &&
       css`
-        padding: 1.2rem 2rem;
+        padding: 1.2rem 1rem;
+        gap: 4rem;
         justify-content: space-between;
       `};
-  }
-  @media (max-width: 460px) {
-    ${(props) =>
-      props.isMenuOpen &&
-      css`
-        flex-direction: column-reverse;
-      `}
   }
 `;
 
