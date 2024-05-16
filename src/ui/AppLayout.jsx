@@ -1,6 +1,6 @@
 import { Outlet } from "react-router-dom";
 
-import Uploader from ".././data/Uploader.jsx";
+// import Uploader from ".././data/Uploader.jsx";
 
 import Sidebar from "./Sidebar.jsx";
 import Header from "./Header.jsx";
@@ -86,7 +86,7 @@ function AppLayout() {
       <MenuIcon>
         <HamburgerMenuIcon />
       </MenuIcon>
-      <Uploader />
+      {/* <Uploader /> */}
 
       <Sidebar />
       <Main isMenuOpen={isMenuOpen}>
