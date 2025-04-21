@@ -37,8 +37,6 @@ const StyledSidebar = styled.aside`
 function Sidebar() {
   const { isMenuOpen } = useMenuInfo();
   const [isVisible, setIsVisible] = useState(isMenuOpen);
-  console.log(`isVisible:`, isVisible);
-  console.log(`isMenuOpen:`, isMenuOpen);
 
   useEffect(() => {
     const handleResize = () => {
